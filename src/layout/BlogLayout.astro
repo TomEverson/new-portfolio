@@ -3,8 +3,7 @@ import Head from "./Head.astro";
 import Header from "../components/Header.astro";
 const { frontmatter } = Astro.props;
 
-// Function to format date
-function formatDate(dateString) {
+function formatDate(dateString: string) {
   const date = new Date(dateString);
   return date.toLocaleDateString("en-US", {
     year: "numeric",
@@ -19,7 +18,7 @@ function formatDate(dateString) {
   <body class="font-family-roboto-mono bg-page text-coffee">
     <Header />
 
-    <main class="w-10/12 m-auto xl:w-1/2 py-8">
+    <main class="w-10/12 m-auto xl:w-1/2 xl:max-w-3xl py-8">
       <!-- Back to blog link -->
       <nav class="mb-8">
         <a
@@ -45,7 +44,7 @@ function formatDate(dateString) {
       <!-- Blog content -->
       <article
         class="prose prose-sm md:prose-base max-w-none prose-stone
-        prose-img:max-w-200 prose-img:max-h-120 prose-img:mx-auto prose-img:block
+        prose-img:max-w-full prose-img:max-h-120 prose-img:mx-auto prose-img:block
         prose-img:object-contain prose-img:rounded-lg prose-img:shadow-sm"
       >
         <slot />
