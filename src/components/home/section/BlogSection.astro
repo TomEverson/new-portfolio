@@ -37,14 +37,14 @@ const processUrl = (url: string) => url.split("/")[2];
       blogs.map((blog) => (
         <a
           href={`/blogs/${processUrl(blog.url)}`}
-          class="group hover:cursor-pointer flex justify-between items-center py-2 hover:text-blue-600 transition-colors"
+          class="group hover:cursor-pointer flex justify-between items-center py-2 transition-colors"
         >
-          <h2 class="text-base font-medium text-gray-900 group-hover:text-purple-600">
+          <h2 class="text-base font-medium text-heading group-hover:text-cappuccino-dark">
             {blog.frontmatter.title}
           </h2>
           <time
             datetime={blog.frontmatter.date}
-            class="text-sm text-gray-500 ml-4 flex-shrink-0"
+            class="text-sm text-cappuccino ml-4 flex-shrink-0"
           >
             {formatDate(blog.frontmatter.date)}
           </time>
