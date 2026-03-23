@@ -1,24 +1,41 @@
 ---
 import "../styles/global.css";
 
-const title = "Tom Everson's Portfolio"
-const description = "Tom Everson's Portfolio on Web Development and Data Science. View my latest work and get in touch."
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  ogType?: string;
+  canonicalURL?: string;
+}
+
+const baseURL = "https://tomeverson.me"
+const defaultTitle = "Tom Everson's Portfolio"
+const defaultDescription = "Tom Everson's Portfolio on Web Development and Data Science. View my latest work and get in touch."
+const defaultOgImage = `${baseURL}/og.png`
+
+const {
+  title = defaultTitle,
+  description = defaultDescription,
+  ogImage = defaultOgImage,
+  ogType = "website",
+  canonicalURL = `${baseURL}/`,
+} = Astro.props;
+
 const keywords = "Tom Everson, Software Engineer, Data Science, Web Developer, Machine Learning, Full Stack Developer, Data Analysis"
 const author = "Tom Everson"
-const canonicalURL = "https://tomeverson.me/"
-const ogImage = "/og.png"
-const ogType = "website"
 const twitterHandle = "@TomEverson125"
 const siteName = "Tom's Portfolio"
 const locale = "en_US"
 const themeColor = "#fff8f2"
 
-
+// Ensure ogImage is always an absolute URL
+const absoluteOgImage = ogImage.startsWith("http") ? ogImage : `${baseURL}${ogImage}`
 ---
 
 <head>
 
-  <title>Tom's Portfolio</title>
+  <title>{title}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -31,36 +48,33 @@ const themeColor = "#fff8f2"
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="generator" content={Astro.generator} />
 
-  
-  
   <!-- SEO Meta Tags -->
-  <title>{title}</title>
   <meta name="description" content={description} />
   <meta name="keywords" content={keywords} />
   <meta name="author" content={author} />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href={canonicalURL} />
-  
+
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content={ogType} />
   <meta property="og:url" content={canonicalURL} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
-  <meta property="og:image" content={ogImage} />
+  <meta property="og:image" content={absoluteOgImage} />
   <meta property="og:image:alt" content={title} />
   <meta property="og:site_name" content={siteName} />
   <meta property="og:locale" content={locale} />
-  
+
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:url" content={ogImage} />
+  <meta name="twitter:url" content={canonicalURL} />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
-  <meta name="twitter:image" content={ogImage} />
+  <meta name="twitter:image" content={absoluteOgImage} />
   <meta name="twitter:image:alt" content={title} />
   <meta name="twitter:site" content={twitterHandle} />
   <meta name="twitter:creator" content={twitterHandle} />
-  
+
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="/favicon.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple_touch.png" />
@@ -72,24 +86,9 @@ const themeColor = "#fff8f2"
   <meta name="msapplication-TileColor" content={themeColor} />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  
+
   <!-- Additional SEO -->
   <meta name="format-detection" content="telephone=no" />
   <meta name="revisit-after" content="7 days" />
-  
 
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": siteName,
-      "url": fullCanonicalURL,
-      "description": description,
-      "author": {
-        "@type": "Person",
-        "name": author
-      }
-    }
-  </script>
 </head>
-

@@ -11,10 +11,19 @@ function formatDate(dateString: string) {
     day: "numeric",
   });
 }
+
+const baseURL = "https://tomeverson.me"
+const canonicalURL = `${baseURL}${Astro.url.pathname}`
 ---
 
 <html lang="en">
-  <Head />
+  <Head
+    title={frontmatter.title}
+    description={frontmatter.description ?? frontmatter.title}
+    ogImage={frontmatter.image ?? "/og.png"}
+    ogType="article"
+    canonicalURL={canonicalURL}
+  />
   <body class="font-family-roboto-mono bg-page text-coffee">
     <Header />
 
